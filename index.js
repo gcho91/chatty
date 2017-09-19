@@ -1,9 +1,12 @@
 const express = require('express');
+const app = express();
+
+
 const bodyParser = require('body-parser');
 //const {json} = require('body-parser')
 
-
 const port = 3000;
+
 
 const messages = [
 {
@@ -15,7 +18,6 @@ const messages = [
 
 
 
-const app = express();
 
 app.use(express.static('assets'))
 app.use(bodyParser.json())
@@ -26,7 +28,7 @@ app.get('/messages', function (req, res, next) {
   res.status(200).json({messages: messages});
 });
 
- 
+
 
 app.post('/messages', function (req, res, next) {
   messages.push({ message: req.body.message, time: new Date() });
@@ -41,7 +43,7 @@ app.post('/messages', function (req, res, next) {
 
 
 app.listen(port, () => {
-  console.log(`Listening on port 3000`)
+  console.log(`Listening on port ${port}`)
 });
 // app.listen(port, function() {
 //   console.log('Listening on port 3000')
